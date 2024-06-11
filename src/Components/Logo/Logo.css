@@ -1,0 +1,10 @@
+.Logo .logo {
+  max-width: 100px;
+  border-radius: 50px;
+}
+@media (max-width: 720px) {
+  .Logo .logo {
+    width: 80px;
+  }
+}
+

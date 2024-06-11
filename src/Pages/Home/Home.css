@@ -1,0 +1,60 @@
+.home {
+  padding: 10px 20px;
+  display: flex;
+  align-items: center; /* Вертикальное выравнивание элементов по центру */
+  justify-content: space-between; /* Распределение пространства между элементами */
+  height: 120px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  header {
+    /* Вертикальное выравнивание содержимого по центру */
+  }
+  .logo {
+    display: flex;
+    align-items: center; /* Вертикальное выравнивание логотипа по центру */
+  }
+
+  .logo img {
+    height: 40px; /* Установите желаемую высоту логотипа */
+    margin-right: 10px;
+  }
+
+  nav {
+    display: flex;
+    align-items: center; /* Вертикальное выравнивание элементов навигации по центру */
+  }
+
+  nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #333;
+    font-size: 1em;
+  }
+
+  nav a:hover {
+    color: #007bff;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 1.5em; /* Уменьшенный размер текста */
+  }
+  
+  .image-container {
+    position: relative;
+    margin: 10px;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  
+  .zoom-image {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .zoom-image:hover {
+    transform: scale(1.2); 
+  }
+  
