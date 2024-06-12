@@ -73,8 +73,8 @@
     margin-top: -10px; 
 } 
 .bestIn{ 
-    width: 170px; 
-    height: 290px; 
+  width: 48%; 
+    
 } 
 .cartName{ 
     font-weight: 600; 
@@ -84,9 +84,11 @@
     font-size: .9rem; 
 } 
 .imgCart{ 
-    height: 265px; 
-    width: 170px; 
-} 
+}
+.imgCart img{
+  width: 100%;
+  display: block;
+}
 .priceTit{ 
     font-size: .8rem; 
     overflow: hidden; 

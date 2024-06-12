@@ -1,7 +1,7 @@
 
 import './Home.css'; 
-import b1 from '../../img/classy wear.jpg' 
-import b2 from '../../img/home_img.webp' 
+
+
 import b3 from '../../img/home111.jpg' 
 import b4 from '../../img/home222.jpg' 
 
@@ -26,79 +26,7 @@ function Home() {
   return ( 
  
     <div className="Best"> 
-      <Swiper 
-        spaceBetween={10} 
-        slidesPerView={2} 
-        // modules={[Navigation, Pagination, Scrollbar, A11y]} 
-        navigation 
-        autoplay={1000} 
-        pagination={{ clickable: true }} 
-        scrollbar={{ draggable: true }} 
-      > 
-        <SwiperSlide> 
-          <Link className="Home_slide" to="#"> 
-            <img 
-              src={slide1} 
-              alt="" 
-            /> 
-            
-          </Link> 
-        </SwiperSlide> 
-        <SwiperSlide> 
-          <Link className="Home_slide" to="#"> 
-            <img 
-              src={slide2} 
-              alt="" 
-            /> 
-            
-          </Link> 
-        </SwiperSlide> 
-        <SwiperSlide> 
-          <Link className="Home_slide" to="#"> 
-            <img 
-              src={slide3} 
-              alt="" 
-            /> 
-             
-          </Link> 
-        </SwiperSlide> 
-        <SwiperSlide> 
-          <Link className="Home_slide" to="#"> 
-            <img 
-              src={slide4} 
-              alt="" 
-            /> 
-            
-          </Link> 
-        </SwiperSlide> 
- 
-        <SwiperSlide> 
-          <Link className="Home_slide" to="#"> 
-            <img 
-              src={slide5} 
-              alt="" 
-            /> 
-             
-          </Link> 
-        </SwiperSlide> 
- 
-        <SwiperSlide> 
-          <Link className="Home_slide" to="#"> 
-            <img 
-              src={slide6} 
-              alt="" 
-            /> 
-             
-          </Link> 
-        </SwiperSlide> 
- 
-       
- 
-        <Link className="Home_slide" to="#"> 
-        <p className="Home_slide-txt"> 
-        Luxurious Fabrics: Crafted from high-quality materials such as silk, satin, chiffon, and lace, our evening dresses ensure a sophisticated and comfortable fit.
-            </p></Link> 
-      </Swiper> 
+      
  
       <div className="container"> 
       <img src="evening-dress.jpg" alt="" class="image"></img>
@@ -114,24 +42,15 @@ function Home() {
             </ul>
             <p>Each dress is thoughtfully designed to enhance your natural beauty and ensure you stand out at any event. Elevate your evening attire with our stunning selection and make every moment unforgettable.</p>
         </div>
-        <Link to="" className="BestTit"><h2>Bestsellers</h2> 
+        <Link to="" className="BestTit"><h2>TheBest</h2> 
         </Link> 
         <br></br> 
         <h3 className='Tit'> 
           This year's top sellers</h3> 
         <div className="bestCart"> 
           <div className="bestCartIn flex"> 
-            <Link to="#" className="bestIn"> 
-              <div className='imgCart'> 
-                <img src={b1} alt="" /></div> 
-             
-            </Link> 
-            <Link to="#" className="bestIn"> 
-              <div className='imgCart'> 
-                <img src={b2} alt="" /></div> 
-              
- 
-            </Link> 
+           
+          
             <Link to="#" className="bestIn"> 
               <div className='imgCart'> 
                 <img src={b3} alt="" /></div> 
