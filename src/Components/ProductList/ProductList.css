@@ -31,7 +31,7 @@
   transition: all 100ms linear;
 }
 .product a:hover {
-  color: rgb(255, 130, 151);
+ 
 }
 .ProductList span {
   font-size: 20px;
@@ -43,4 +43,13 @@
 }
 .ProductList .actions {
   margin: 0 0 10px 10px;
+}
+.image-container img {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease; /* Плавный переход при увеличении */
+}
+
+.image-container img:hover {
+  transform: scale(1.2); /* Масштабирование изображения при наведении */
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Delivery.css';
-
+import b1 from '../../img/home222.jpg' 
+import slide1 from '../../img/home222.jpg' 
 const DeliveryForm = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -20,7 +21,6 @@ const DeliveryForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you can add code to send the data to a server
     console.log('Submitted data:', formData);
   };
 
@@ -87,6 +87,23 @@ const DeliveryForm = () => {
               required
             />
           </label>
+         
+
+
+    <div className="container">
+     <img 
+              src={slide1} 
+              alt="" 
+            />  
+      <div className="description right">
+        <h2>Доставка</h2>
+        <p>Мы предоставляем быструю и надежную доставку прямо до вашего порога. Наши услуги доступны в любое время и для любого адреса.</p>
+      </div>
+    </div>
+ 
+
+export default App;
+
         </div>
         <button type="submit">Submit</button>
       </form>

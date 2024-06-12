@@ -1,116 +1,136 @@
-import { useContext, useState } from "react";
-import "./AddProduct.css";
-import { AppContext } from "../../App";
-import { productsCollection, uploadProductPhoto } from "../../firebase";
-import { addDoc } from "firebase/firestore";
+import React, { useState } from 'react';
 
-export default function AddProduct({ category }) {
-  const { user } = useContext(AppContext);
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
-  const [picture, setPicture] = useState(null);
-  const [description, setDescription] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  if (!user || !user.isAdmin) {
-    return null;
-  }
+function ProductForm({ onAddProduct }) {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [image, setImage] = useState(null);
+  const [color, setColor] = useState('');
+  const [price, setPrice] = useState('');
+  const [size, setSize] = useState('');
 
-  function onChangeName(event) {
-    setName(event.target.value);
-  }
-  function onChangePrice(event) {
-    setPrice(event.target.value);
-  }
-  function onChangePicture(event) {
-    const file = event.target.files[0];
-    setPicture(file);
-  }
-  function onChangeDescription(event) {
-    setDescription(event.target.value);
-  }
-
-  function onFormSubmit(event) {
-    event.preventDefault();
-
-    if (!picture) {
-      alert("Please upload an picture");
-      return;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      onAddProduct({ title, description, imageUrl: reader.result, color, size,price  });
+      setTitle('');
+      setDescription('');
+      setImage(null);
+      setColor('');
+      setPrice('');
+      setSize('');
+    };
+    if (image) {
+      reader.readAsDataURL(image);
     }
-
-    setIsSubmitting(true);
-    uploadProductPhoto(picture)
-      .then((pictureUrl) =>
-        addDoc(productsCollection, {
-          category: category.id,
-          name: name,
-          price: Number(price),
-          picture: pictureUrl,
-          description: description,
-          slug: name.replaceAll(" ", "-").toLowerCase(),
-        })
-      )
-      .then(() => {
-        setName("");
-        setPrice(0.0);
-        setPicture(null);
-        setDescription("");
-      })
-      .catch((error) => {
-        console.log("Failed to add product:", error);
-      })
-      .finally(() => {
-        setIsSubmitting(false);
-      });
-  }
+  };
 
   return (
-    <div className="AddProduct">
-      <form onSubmit={onFormSubmit}>
-        <h3>Create a new product</h3>
+    <form onSubmit={handleSubmit}>
+      <div>
         <label>
-          Name:
+          Название:
           <input
             type="text"
-            value={name}
-            name="name"
-            onChange={onChangeName}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             required
           />
         </label>
+      </div>
+      <div>
         <label>
-          Price:
+          Описание:
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Изображение:
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImage(e.target.files[0])}
+            required
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Цвет:
+          <input
+            type="text"
+            value={color}
+            onChange={(e) => setColor(e.target.value)}
+            required
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Цена:
           <input
             type="number"
             value={price}
-            name="price"
-            step="any"
-            onChange={onChangePrice}
-            min={0}
+            onChange={(e) => setPrice(e.target.value)}
             required
           />
         </label>
+      </div>
+      <div>
         <label>
-          Picture32:
+          Размер:
           <input
-            type="file"
-            name="picture"
-            onChange={onChangePicture}
+            type="text"
+            value={size}
+            onChange={(e) => setSize(e.target.value)}
             required
           />
         </label>
-        <label>
-          Description:
-          <textarea
-            type=""
-            name="description"
-            value={description}
-            onChange={onChangeDescription}
-            required
-          />
-        </label>
-        <button type="submit" disabled={isSubmitting}>{isSubmitting ? "Submitting..." : "Submit"}</button>
-      </form>
+      </div>
+      <button type="submit">Добавить продукт</button>
+    </form>
+  );
+}
+
+
+function ProductCard({ product }) {
+  return (
+    <div className="product-card">
+      <img src={product.imageUrl} alt={product.title} />
+      <h2>{product.title}</h2>
+      <p>{product.description}</p>
+      <p>Цвет: {product.color}</p>
+      <p>Цена: {product.price} $</p>
+      <p>Размер: {product.size}</p>
     </div>
   );
 }
+
+
+function App() {
+  const [products, setProducts] = useState([]);
+
+  const addProduct = (product) => {
+    setProducts([...products, product]);
+  };
+
+  return (
+    <div className="App">
+      <h1>Добавить продукт</h1>
+      <ProductForm onAddProduct={addProduct} />
+      <div className="product-list">
+        {products.map((product, index) => (
+          <ProductCard key={index} product={product} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default App;
